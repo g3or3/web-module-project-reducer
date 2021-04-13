@@ -2,7 +2,14 @@ import React from "react";
 import { useReducer } from "react";
 import reducer from "./reducers/index";
 import { initialState } from "./reducers/index";
-import { addOne, applyNumber } from "./actions/index";
+import {
+	applyNumber,
+	changeOperation,
+	clearDisplay,
+	addToMemory,
+	applyMemoryValue,
+	clearMemory,
+} from "./actions/index";
 
 import "./App.css";
 
@@ -37,9 +44,18 @@ function App() {
 						</div>
 
 						<div className="row">
-							<CalcButton value={"M+"} />
-							<CalcButton value={"MR"} />
-							<CalcButton value={"MC"} />
+							<CalcButton
+								value={"M+"}
+								onClick={() => dispatch(addToMemory())}
+							/>
+							<CalcButton
+								value={"MR"}
+								onClick={() => dispatch(applyMemoryValue())}
+							/>
+							<CalcButton
+								value={"MC"}
+								onClick={() => dispatch(clearMemory())}
+							/>
 						</div>
 
 						<div className="row">
@@ -88,13 +104,25 @@ function App() {
 						</div>
 
 						<div className="row">
-							<CalcButton value={"+"} />
-							<CalcButton value={"*"} />
-							<CalcButton value={"-"} />
+							<CalcButton
+								value={"+"}
+								onClick={() => dispatch(changeOperation("+"))}
+							/>
+							<CalcButton
+								value={"*"}
+								onClick={() => dispatch(changeOperation("*"))}
+							/>
+							<CalcButton
+								value={"-"}
+								onClick={() => dispatch(changeOperation("-"))}
+							/>
 						</div>
 
 						<div className="row ce_button">
-							<CalcButton value={"CE"} />
+							<CalcButton
+								value={"CE"}
+								onClick={() => dispatch(clearDisplay())}
+							/>
 						</div>
 					</form>
 				</div>
